@@ -97,98 +97,129 @@ Licence URI: https://www.os-templates.com/template-terms
       <p>Reach out to schedule an event, or ask any questions</p>
       <br>
       <!-- ################################################################################################ -->
-      <form id="contact-form" method="POST" action="http://ns-mailapps.appspot.com/BStringsMailForm" target="_top" data-toggle="validator">
-        <input type="HIDDEN" name="recipient" value="info@your-domain.com">
-        <input type="HIDDEN" name="subject" value="WebSite Contact"> 
-        <input type="HIDDEN" name="redirect" value="http://your-domain.com/thanks.htm">
-        <input type="HIDDEN" name="required" value="email,email_confirm,your_name"> 
-        <input type="hidden" name="sort" value="through,your_name,phone,company_name,email,email_confirm,comments">
+      <script>
+      const submitForm = () => {
+        const encryptedBuffaloStringsEmail =
+          "aW5xdWlyeUBidWZmYWxvc3RyaW5ncy5jb20=";
 
+        const name = document.getElementsByName("RealName")[0].value;
+        const phone = document.getElementsByName("Phone")[0].value;
+        const email = document.getElementsByName("E-mail address")[0].value;
+        const message = document.getElementsByName("Message")[0].value;
 
+        const subject = encodeURI(`Inquiry from ${name}`);
+        const body = encodeURI(`${message}\n\n${name}\n${phone}\n${email}`);
 
-        <table border="0" cellpadding="2" cellspacing="0" width="100%">
+        console.log(message.length);
 
-        <tbody><tr><td valign="TOP">
+        var hiddenLink = document.createElement("a");
+        hiddenLink.href = `mailto:${atob(
+          encryptedBuffaloStringsEmail
+        )}?subject=${subject}&body=${body}`;
+        hiddenLink.click();
 
-        Name:<br>
-        <input type="TEXT" name="RealName" size="30" class="shadeform" required>
+        document.getElementById("contact-form").reset();
+        document.getElementById("confirmation").style.display = "block";
+      };
 
-        </td></tr><tr><td>
+      const resetForm = () => {
+        document.getElementById("contact-form").reset();
+        document.getElementById("confirmation").style.display = "none";
+      };
+    </script>
+    <form
+      id="contact-form"
+      method="POST"
+      action="javascript:submitForm()"
+      target="_top"
+      data-toggle="validator"
+    >
+      <table border="0" cellpadding="2" cellspacing="0" width="100%">
+        <tbody>
+          <tr>
+            <td valign="TOP">
+              Name:<br />
+              <input
+                type="TEXT"
+                name="RealName"
+                size="30"
+                class="shadeform"
+                required=""
+                style="
+                  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==');
+                  background-repeat: no-repeat;
+                  background-attachment: scroll;
+                  background-size: 16px 18px;
+                  background-position: 98% 50%;
+                "
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Phone:<br />
+              <input
+                type="TEXT"
+                name="Phone"
+                size="30"
+                class="shadeform"
+                required=""
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              E-Mail:<br />
+              <input
+                type="TEXT"
+                name="E-mail address"
+                size="30"
+                class="shadeform"
+                required=""
+              />
+            </td>
+          </tr>
 
-       <!-- 
- Company/Event:<br>
-        <input type="TEXT" name="Company" size="30" class="shadeform" required>
- -->
+          <tr>
+            <td>
+              <br />
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-        </td></tr><tr><td>
+      <br />
 
-        Phone:<br>
-        <input type="TEXT" name="Phone" size="30" class="shadeform" required>
+      Comments/Questions:<br />
 
-        </td></tr>
-                                          <tr><td>
+      <textarea
+        name="Message"
+        rows="8"
+        cols="45"
+        class="shadeform"
+        required=""
+        maxlength="1000"
+      ></textarea>
 
-        E-Mail:<br>
-        <input type="TEXT" name="E-mail address" size="30" class="shadeform" required>
+      <br /><br />
 
-        </td></tr>
-      
-       <tr><td><br>
+      <input type="submit" value="Submit Info" />&nbsp;
+      <input
+        type="button"
+        onclick="javascript:resetForm()"
+        value="Clear Form"
+      /><br />
 
-       <!-- 
- How did you find our site?<br>
-        <select name="through" class="dropdown">
-        <option selected="" value="None selected">Please Select One ~~~~~~~~~~&gt;&gt;&gt;</option>
-        <option value="Google">Google</option>
-        <option value="Bing">Bing</option>
-        <option value="DuckDuckGo">Duck Duck Go</option>
-        <option value="American Federation of Musicians Local 92">A.F.M. Local 92</option>
-        <option value="Word of Mouth">Word of Mouth</option>
-        <option value="Friend">Friend</option>
-        <option value="website">Another Website</option>
-        <option value="Magazine Newspaper">Magazine/Newspaper</option>
-        <option value="Radio">Radio</option>
-        <option value="other">Other</option>
-        </select><br>
- -->
+      <br />
+      <br />
 
-        </td></tr>
-
-                                        </tbody></table>
-
-
-        <br>
-
-
-
-
-        Comments/Questions:<br>
-
-
-        <textarea name="Message" rows="8" cols="45" class="shadeform" required></textarea>
-
-        <br><br>
-
-        <div class="g-recaptcha" data-sitekey="6LfIZrQUAAAAADGc8YJiULEZxjtPzjChcAEkHGUb"></div>
-
-        <script>
-
-          var form = document.getElementById('contact-form');
-          form.addEventListener("submit", function(event){
-              if (grecaptcha.getResponse() === '') {                            
-                event.preventDefault();
-                alert('You must select the reCaptcha before sending your message.');
-              }
-            }
-          , false);
-                        
-        </script>
-        <br>
-
-        <input type="submit" value="Submit Info">&nbsp;
-        <input type="reset" value="Clear Form"><br>
-
-      </form>
+      <div id="confirmation" style="display: none">
+        <p>
+          Your email has been constructed and should open in your default email
+          client.
+        </p>
+      </div>
+    </form>
       <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
