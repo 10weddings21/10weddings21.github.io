@@ -110,8 +110,6 @@ Licence URI: https://www.os-templates.com/template-terms
         const subject = encodeURI(`Inquiry from ${name}`);
         const body = encodeURI(`${message}\n\n${name}\n${phone}\n${email}`);
 
-        console.log(message.length);
-
         var hiddenLink = document.createElement("a");
         hiddenLink.href = `mailto:${atob(
           encryptedBuffaloStringsEmail
@@ -120,11 +118,13 @@ Licence URI: https://www.os-templates.com/template-terms
 
         document.getElementById("contact-form").reset();
         document.getElementById("confirmation").style.display = "block";
+        document.getElementById("submit-button").style.display = "none";
       };
 
       const resetForm = () => {
         document.getElementById("contact-form").reset();
         document.getElementById("confirmation").style.display = "none";
+        document.getElementById("submit-button").style.display = "block";
       };
     </script>
     <form
@@ -201,24 +201,20 @@ Licence URI: https://www.os-templates.com/template-terms
         maxlength="1000"
       ></textarea>
 
-      <br /><br />
-
-      <input type="submit" value="Submit Info" />&nbsp;
+      <br />
+      <input type="submit" value="Submit Info" id="submit-button"/>&nbsp;
+      <p style="display: none; margin-top: 0; font-weight: bold; font-size: 18px;"  id="confirmation" >
+        Your email has been constructed and should open in your default email
+        client.
+      </p>
       <input
         type="button"
         onclick="javascript:resetForm()"
-        value="Clear Form"
+        value="Reset Form"
       /><br />
 
       <br />
       <br />
-
-      <div id="confirmation" style="display: none">
-        <p>
-          Your email has been constructed and should open in your default email
-          client.
-        </p>
-      </div>
     </form>
       <!-- ################################################################################################ -->
     </div>
